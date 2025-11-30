@@ -14,6 +14,7 @@ function App() {
         <nav>
           <NavLink to="/sign-up">Sign-up</NavLink>
           <NavLink to="/login">Login</NavLink>
+          <NavLink to="/employees">Employees</NavLink>
         </nav>
 
         <Routes>

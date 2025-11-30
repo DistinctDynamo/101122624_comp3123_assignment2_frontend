@@ -5,6 +5,8 @@ import ViewEmployee from './viewEmployee';
 
 export default function EmployeeList(){
     const navigate = useNavigate();
+
+    const loggedIn = localStorage.getItem('LoggedIn')
     
     const [employees, SetEmployees] = useState([]);
     const [openModal, setOpenModal] = useState(
@@ -40,13 +42,15 @@ export default function EmployeeList(){
 
     const logOut=()=>{
         navigate("/login")
+        localStorage.setItem('LoggedIn',"False")
     };
 
     const navigateToAdd=()=>{
         navigate("/add")
     }
-
-    return (
+    
+    if(loggedIn==="True"){
+        return ( 
         <div>
             <h3>Employee List</h3>
             <button onClick={navigateToAdd}>Add Employee</button>
@@ -85,4 +89,9 @@ export default function EmployeeList(){
             <button onClick={logOut}>LogOut</button>
         </div>
     )
+    }else{
+        navigate("/login")
+        localStorage.setItem('LoggedIn','False')
+    }
+    
 }

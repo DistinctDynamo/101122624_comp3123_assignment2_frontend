@@ -44,11 +44,12 @@ export default function UpdateEmployees({props}){
         })
     };
     
-    const logOut=(event)=>{
+    const logOut=()=>{
         navigate("/login")
+        localStorage.setItem('LoggedIn','False')
     };
 
-    const Backout=(event)=>{
+    const Backout=()=>{
         navigate("/employees")
     };
 

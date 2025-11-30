@@ -44,6 +44,7 @@ export default function AddEmployee(){
     
     const logOut=()=>{
         navigate("/login")
+        localStorage.setItem('LoggedIn','False')
     };
 
     const Backout=()=>{

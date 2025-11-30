@@ -5,6 +5,15 @@ import { useNavigate } from "react-router";
 export default function Login(){
     const navigate = useNavigate();
 
+    const loggedInStatus=()=>{
+        let check = localStorage.getItem('LoggedIn')
+        if(check === "True"){
+            return true
+        } else{
+            return false
+        }
+    }
+
     const [formData, setFormData] = useState({
         username:'',
         email:'',
@@ -30,6 +39,8 @@ export default function Login(){
         .then((response)=>{
             console.log(response.status, response.data.token);
         }).then(
+           localStorage.setItem('LoggedIn','True')
+        ).then(
             navigate('/employees')
         ).catch(error=>{
             alert(error)
@@ -77,9 +88,12 @@ export default function Login(){
                 required
                 />
 
-                <button type='submit' className='login button'>
+                {
+                    loggedInStatus() ? <p>You are already logged in</p>
+                    :<button type='submit' className='login button'>
                     Login
-                </button>
+                    </button>
+                }
                 
                 </form>
             </section>
