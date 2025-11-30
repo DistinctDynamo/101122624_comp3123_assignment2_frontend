@@ -1,8 +1,17 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router";
+import ViewEmployee from './viewEmployee';
 
 export default function EmployeeList(){
+    const navigate = useNavigate();
+    
     const [employees, SetEmployees] = useState([]);
+    const [openModal, setOpenModal] = useState(
+        {
+            state:false,
+            id:""
+        });
 
     const fetchEmployees = () =>{
         axios.get('http://localhost:8081/api/v1/emp/employees')
@@ -15,12 +24,32 @@ export default function EmployeeList(){
         });
     }
 
+    const deleteEmployee = (id)=>{
+        axios.delete(`http://localhost:8081/api/v1/emp/employees/${id}`)
+        .catch(error=>{
+            alert(error)
+        })
+    };
+    
     useEffect(fetchEmployees,[]);
+
+    const navigateToUpdate = (employee_id)=>{
+        let parameter = employee_id
+        navigate(`/update/${parameter}`);
+    }
+
+    const logOut=()=>{
+        navigate("/login")
+    };
+
+    const navigateToAdd=()=>{
+        navigate("/add")
+    }
 
     return (
         <div>
             <h3>Employee List</h3>
-            <button >Add Employee</button>
+            <button onClick={navigateToAdd}>Add Employee</button>
             <table border="1" cellPadding="5">
                 <thead>
                     <tr>
@@ -28,19 +57,32 @@ export default function EmployeeList(){
                         <th>Last Name</th>
                         <th>Position</th>
                         <th>Department</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
                 <tbody>
                     {employees.map(employee => (
-                        <tr key={employee.id}>
+                        <tr key={employee._id}>
                             <td>{employee.first_name}</td>
                             <td>{employee.last_name}</td>
                             <td>{employee.position}</td>
                             <td>{employee.department}</td>
+                            <td>    
+                            <button onClick={() => {
+                                setOpenModal({state:true,
+                                             id:employee._id});
+                            }}>
+                            View
+                            </button>
+                            <button onClick={e=>navigateToUpdate(employee._id)}>Edit</button>
+                            <button onClick={e=>deleteEmployee(employee._id)}>Delete</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            {openModal.state && <ViewEmployee employeeId={openModal.id} setModalOpen={setOpenModal} />}
+            <button onClick={logOut}>LogOut</button>
         </div>
     )
 }

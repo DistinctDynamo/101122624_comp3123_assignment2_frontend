@@ -1,5 +1,7 @@
 import './App.css';
 import EmployeeList from './components/employees';
+import UpdateEmployees from './components/updateEmployee';
+import AddEmployee from './components/addEmployee';
 import Login from './components/login';
 import Signup from './components/sign-up';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router';
@@ -18,6 +20,8 @@ function App() {
           <Route path="/sign-up" element={<Signup/>} />
           <Route path="/login" element={<Login/>} /> 
           <Route path="/employees" element={<EmployeeList/>}/>
+          <Route path="/update/:employeeid" element={<UpdateEmployees/>}/>
+          <Route path="/add" element={<AddEmployee/>}/>
         </Routes>
       </BrowserRouter>
       </div>

@@ -41,7 +41,7 @@ export default function Signup(){
             <section>
                 <form onSubmit={handleSubmit}>
                     <header>
-                        <h1>Create User</h1>
+                        <h1>Sign Up</h1>
                     </header>
 
                 <label htmlFor='username'>Username:</label>
