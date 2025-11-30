@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router";
+import {Button,Input,Stack,Container, CssBaseline} from '@mui/material';
 
 export default function Login(){
     const navigate = useNavigate();
@@ -48,55 +49,56 @@ export default function Login(){
     };
     
     return(
-        <main>
-            <section>
-                <form onSubmit={handleSubmit}>
+        <Container maxWidth='md'>
+            <Stack gap={2}>
+                <CssBaseline/>
+                    <form onSubmit={handleSubmit}>
                     <header>
                         <h1>Login</h1>
                     </header>
 
-                <label htmlFor='username'>Username</label>
-                <input
-                id="username"
-                name='username'
-                type='text'
-                value={formData.username}
-                onChange={handleChange}
-                placeholder='Jane Doe'
-                required
-                />
+                    <label htmlFor='username'>Username:</label>
+                    <Input
+                    id="username"
+                    name='username'
+                    type='text'
+                    value={formData.username}
+                    onChange={handleChange}
+                    placeholder='Jane Doe'
+                    required
+                    />
 
-                <label htmlFor='email'>Email</label>
-                <input
-                id="email"
-                name='email'
-                type='text'
-                value={formData.email}
-                onChange={handleChange}
-                placeholder='JaneDoe@123.gmail.com'
-                required
-                />
+                    <label htmlFor='email'>Email:</label>
+                    <Input
+                    id="email"
+                    name='email'
+                    type='text'
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder='JaneDoe@123.gmail.com'
+                    required
+                    />
 
-                <label htmlFor='password'>Password:</label>
-                <input
-                id="password"
-                name='password'
-                type='text'
-                value={formData.password}
-                onChange={handleChange}
-                placeholder='*********'
-                required
-                />
+                    <label htmlFor='password'>Password:</label>
+                    <Input
+                    id="password"
+                    name='password'
+                    type='text'
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder='*********'
+                    required
+                    />
 
-                {
-                    loggedInStatus() ? <p>You are already logged in</p>
-                    :<button type='submit' className='login button'>
-                    Login
-                    </button>
-                }
-                
-                </form>
-            </section>
-        </main>
+                    {
+                        loggedInStatus() ? <p>You are already logged in</p>
+                        :<Button variant="contained" type='submit' className='login button'>
+                        Login
+                        </Button>
+                    }
+                    
+                    </form>
+            </Stack>
+        </Container>
     )
 }

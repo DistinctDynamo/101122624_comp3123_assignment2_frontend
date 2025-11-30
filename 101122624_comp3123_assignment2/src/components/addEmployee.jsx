@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router";
+import {Button,Input,Stack,Container, CssBaseline} from '@mui/material';
 
 export default function AddEmployee(){
   const navigate = useNavigate();
@@ -52,15 +53,16 @@ export default function AddEmployee(){
     };
 
 return(
-        <main>
-            <section>
+        <Container maxWidth='md'>
+            <Stack gap={2}>
+                <CssBaseline/>
                 <form onSubmit={handleSubmit}>
                 <header>
                     <h1>Update Employee</h1>
                 </header>
 
                 <label htmlFor='first_name'>First Name:</label>
-                <input
+                <Input
                 id="first_name"
                 name='first_name'
                 type='text'
@@ -71,7 +73,7 @@ return(
                 />
 
                 <label htmlFor='last_name'>Last Name:</label>
-                <input
+                <Input
                 id="last_name"
                 name='last_name'
                 type='text'
@@ -82,7 +84,7 @@ return(
                 />
 
                 <label htmlFor='email'>Email:</label>
-                <input
+                <Input
                 id="email"
                 name='email'
                 type='text'
@@ -93,7 +95,7 @@ return(
                 />
 
                 <label htmlFor='position'>Position:</label>
-                <input
+                <Input
                 id="position"
                 name='position'
                 type='text'
@@ -103,7 +105,7 @@ return(
                 />
 
                 <label htmlFor='salary'>Salary:</label>
-                <input
+                <Input
                 id="salary"
                 name='salary'
                 type='number'
@@ -113,7 +115,7 @@ return(
                 />
 
                 <label htmlFor='department'>Department:</label>
-                <input
+                <Input
                 id="department"
                 name='department'
                 type='text'
@@ -122,13 +124,13 @@ return(
                 required
                 />
 
-                <button type='submit' className='add button'>
+                <Button variant='contained' type='submit' className='add button'>
                     Add
-                </button>
+                </Button>
                 </form>
-            </section>
-            <button onClick={logOut}>LogOut</button>
-            <button onClick={Backout}>Cancel</button>
-        </main>
+            </Stack>
+            <Button variant='contained' onClick={logOut}>LogOut</Button>
+            <Button variant='contained' onClick={Backout}>Cancel</Button>
+        </Container>
     )
 }

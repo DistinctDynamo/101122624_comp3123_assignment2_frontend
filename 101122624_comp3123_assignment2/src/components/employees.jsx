@@ -2,6 +2,12 @@ import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router";
 import ViewEmployee from './viewEmployee';
+import {Button,Container, CssBaseline} from '@mui/material';
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 export default function EmployeeList(){
     const navigate = useNavigate();
@@ -51,11 +57,13 @@ export default function EmployeeList(){
     
     if(loggedIn==="True"){
         return ( 
-        <div>
-            <h3>Employee List</h3>
-            <button onClick={navigateToAdd}>Add Employee</button>
-            <table border="1" cellPadding="5">
-                <thead>
+        <Container maxWidth='md'>
+            <CssBaseline/>
+            <h2>Employee List</h2>
+            <Button variant='contained' onClick={navigateToAdd}>Add Employee</Button>
+            <TableContainer>
+            <Table border="1" cellPadding="5">
+                <TableHead>
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -63,31 +71,32 @@ export default function EmployeeList(){
                         <th>Department</th>
                         <th>Options</th>
                     </tr>
-                </thead>
-                <tbody>
+                </TableHead>
+                <TableBody>
                     {employees.map(employee => (
-                        <tr key={employee._id}>
+                        <TableRow key={employee._id}>
                             <td>{employee.first_name}</td>
                             <td>{employee.last_name}</td>
                             <td>{employee.position}</td>
                             <td>{employee.department}</td>
                             <td>    
-                            <button onClick={() => {
+                            <Button variant='contained' onClick={() => {
                                 setOpenModal({state:true,
                                              id:employee._id});
                             }}>
                             View
-                            </button>
-                            <button onClick={e=>navigateToUpdate(employee._id)}>Edit</button>
-                            <button onClick={e=>deleteEmployee(employee._id)}>Delete</button>
+                            </Button>
+                            <Button variant='contained' onClick={e=>navigateToUpdate(employee._id)}>Edit</Button>
+                            <Button variant='contained' onClick={e=>deleteEmployee(employee._id)}>Delete</Button>
                             </td>
-                        </tr>
+                        </TableRow>
                     ))}
-                </tbody>
-            </table>
+                </TableBody>
+            </Table>
+            </TableContainer>
             {openModal.state && <ViewEmployee employeeId={openModal.id} setModalOpen={setOpenModal} />}
-            <button onClick={logOut}>LogOut</button>
-        </div>
+            <Button variant='contained' onClick={logOut}>LogOut</Button>
+        </Container>
     )
     }else{
         navigate("/login")

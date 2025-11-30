@@ -1,5 +1,9 @@
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import {Button,Container, CssBaseline, TableCell} from '@mui/material';
+import Table from '@mui/material/Table'
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
 
 export default function ViewEmployee({employeeId,setModalOpen}){
 
@@ -21,21 +25,26 @@ export default function ViewEmployee({employeeId,setModalOpen}){
     }, [employeeId]);
 
     return (
-            <div>
-                <table border="1" cellPadding="5">
-                            <tr>{employee.first_name}</tr>
-                            <tr>{employee.last_name}</tr>
-                            <tr>{employee.email}</tr>
-                            <tr>{employee.position}</tr>
-                            <tr>{employee.salary}</tr>
-                            <tr>{employee.department}</tr>
-                    </table>
-                <button
+            <Container>
+                <CssBaseline/>
+                <TableContainer>
+                <Table border="1" cellPadding="5">
+                            <TableRow>First Name: {employee.first_name}</TableRow>
+                            <TableRow>Last Name: {employee.last_name}</TableRow>
+                            <TableRow>Email: {employee.email}</TableRow>
+                            <TableRow>Position: {employee.position}</TableRow>
+                            <TableRow>Salary: {employee.salary}</TableRow>
+                            <TableRow>Department: {employee.department}</TableRow>
+                            <TableRow>Date of Joining: {employee.date_of_joining}</TableRow>
+                    </Table>
+                    </TableContainer>
+                <Button variant='contained'
                     onClick={() => {
                     setModalOpen({ state: false, id: "" });
                     }}>
                 Cancel
-                </button>
-            </div>
+                </Button>
+                
+            </Container>
   );
 }

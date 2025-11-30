@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router";
+import {Button,Input,Stack,Container, CssBaseline} from '@mui/material';
 
 export default function Signup(){
     const navigate = useNavigate();
@@ -37,15 +38,16 @@ export default function Signup(){
     };
     
     return(
-        <main>
-            <section>
+        <Container maxWidth='md'>
+            <Stack gap={2}>
+                <CssBaseline/>
                 <form onSubmit={handleSubmit}>
                     <header>
                         <h1>Sign Up</h1>
                     </header>
 
                 <label htmlFor='username'>Username:</label>
-                <input
+                <Input
                 id="username"
                 name='username'
                 type='text'
@@ -56,7 +58,7 @@ export default function Signup(){
                 />
 
                 <label htmlFor='email'>Email:</label>
-                <input
+                <Input
                 id="email"
                 name='email'
                 type='text'
@@ -67,7 +69,7 @@ export default function Signup(){
                 />
 
                 <label htmlFor='password'>Password:</label>
-                <input
+                <Input
                 id="password"
                 name='password'
                 type='text'
@@ -77,12 +79,12 @@ export default function Signup(){
                 required
                 />
 
-                <button type='submit' className='sign up button'>
+                <Button variant='contained' type='submit' className='sign up button'>
                     Sign-Up
-                </button>
+                </Button>
                 </form>
-            </section>
-        </main>
+            </Stack>
+        </Container>
     )
 }
 
