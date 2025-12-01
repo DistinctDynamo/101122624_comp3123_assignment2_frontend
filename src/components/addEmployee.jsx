@@ -34,7 +34,7 @@ export default function AddEmployee(){
             salary:formData.salary,
             department:formData.department
         }
-        axios.post('http://localhost:8081/api/v1/emp/employees',userData
+        axios.post('http://localhost:8082/api/v1/emp/employees',userData
         ).then(
             navigate('/employees')
         )

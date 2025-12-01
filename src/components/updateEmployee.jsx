@@ -12,7 +12,7 @@ export default function UpdateEmployees({props}){
 
     const getEmployee = (employeeId) => {
         try {
-        axios.get(`http://localhost:8081/api/v1/emp/employees/${employeeId}`)
+        axios.get(`http://localhost:8082/api/v1/emp/employees/${employeeId}`)
             .then(response=>{
                 setEmployee(response.data);
             })
@@ -36,7 +36,7 @@ export default function UpdateEmployees({props}){
 
     const handleSubmit = (event)=>{
         event.preventDefault();
-        axios.put(`http://localhost:8081/api/v1/emp/employees/${employeeid}`,employee
+        axios.put(`http://localhost:8082/api/v1/emp/employees/${employeeid}`,employee
         ).then(
             navigate('/employees')
         )

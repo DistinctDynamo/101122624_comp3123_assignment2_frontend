@@ -36,7 +36,7 @@ export default function Login(){
             email: formData.email,
             password: formData.password
         }
-        axios.post('http://localhost:8081/api/v1/user/login',userData)
+        axios.post('http://localhost:8082/api/v1/user/login',userData)
         .then((response)=>{
             console.log(response.status, response.data.token);
         }).then(

@@ -11,7 +11,7 @@ export default function ViewEmployee({employeeId,setModalOpen}){
 
     const getEmployee = (Id) => {
         try {
-        axios.get(`http://localhost:8081/api/v1/emp/employees/${Id}`)
+        axios.get(`http://localhost:8082/api/v1/emp/employees/${Id}`)
             .then(response=>{
                 setEmployee(response.data);
             })

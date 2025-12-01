@@ -22,7 +22,7 @@ export default function EmployeeList(){
         });
 
     const fetchEmployees = () =>{
-        axios.get('http://localhost:8081/api/v1/emp/employees')
+        axios.get('http://localhost:8082/api/v1/emp/employees')
         .then(response=>{
             console.log(response);
             SetEmployees(response.data);
@@ -33,7 +33,7 @@ export default function EmployeeList(){
     }
 
     const deleteEmployee = (id)=>{
-        axios.delete(`http://localhost:8081/api/v1/emp/employees/${id}`)
+        axios.delete(`http://localhost:8082/api/v1/emp/employees/${id}`)
         .catch(error=>{
             alert(error)
         })
